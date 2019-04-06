@@ -1,0 +1,15 @@
+[Unit]
+Description=App Backend Service
+After=network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=<project_dir>
+ExecStart=<gunicorn_path> \
+          --access-logfile - \
+          --workers 3 \
+          config.wsgi:application
