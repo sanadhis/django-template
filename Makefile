@@ -21,14 +21,14 @@ requirements:
 	pip install -r requirements.txt
 
 start-dev:
-	python app/manage.py runserver 0:$(port) 
+	python app/manage.py runserver 0:$(devPort) 
 
 #### Deployment section ####
 build: build-dir
 	sed -e 's#<gunicorn_path>#$(gunicorn)#' \
 		-e 's#<project_dir>#$(projectDir)/app#' \
 		-e 's#<hostname>#$(hostname)#' \
-		-e 's#<port>#$(port)#' \
+		-e 's#<port>#$(prodPort)#' \
 		deploy/app.service > build/app.service
 
 deploy:
