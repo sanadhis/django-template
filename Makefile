@@ -1,25 +1,29 @@
+# grasping environment
 conda?=miniconda
-gunicorn?=$(shell which gunicorn)
-port?=8000
-hostname?=0.0.0.0
-
-projectDir=$(PWD)
 user=$(shell id -u)
+
+# deployment settings
+gunicorn?=$(shell which gunicorn)
+devPort?=8000
+prodPort?=8000
+hostname?=0.0.0.0
+projectDir=$(PWD)
 
 .PHONY: build deploy
 
 build-dir:
 	mkdir -p build
 
-init: build-dir
+init:
 	./scripts/install-conda.sh $(conda)
 	
 requirements:
 	pip install -r requirements.txt
 
-start:
+start-dev:
 	python app/manage.py runserver 0:$(port) 
 
+#### Deployment section ####
 build: build-dir
 	sed -e 's#<gunicorn_path>#$(gunicorn)#' \
 		-e 's#<project_dir>#$(projectDir)/app#' \
@@ -42,3 +46,4 @@ ifeq ($(user),0)
 else
 	@echo "Please run as sudo to restart"
 endif
+#### Deployment section ####

@@ -23,7 +23,7 @@ make requirements
 
 ## 3. Starting the DEV server
 ```bash
-make start
+make start-dev
 ```
 
 # Deploying the application
@@ -35,6 +35,12 @@ make build
 ## 2. Install and deploy into systemd
 ```bash
 sudo make deploy
+```
+
+## 3. Restarting app
+Changes to the django code will be automatically reloaded by gunicorn so technically no hard restart is needed to app service. However, just in case:
+```bash
+sudo make restart
 ```
 
 ### Notes:
