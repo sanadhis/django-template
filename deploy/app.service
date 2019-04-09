@@ -15,3 +15,5 @@ ExecStart=<gunicorn_path> \
           --workers 3 \
           --reload \
           config.wsgi:application
+Restart=always
+RestartSec=1
