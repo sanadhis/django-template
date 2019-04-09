@@ -20,8 +20,14 @@ init:
 requirements:
 	pip install -r requirements.txt
 
+migrate:
+	python app/manage.py migrate
+
 start-dev:
-	python app/manage.py runserver 0:$(devPort) 
+	enableDebug=yes python app/manage.py runserver 0:$(devPort) 
+
+test:
+	python app/manage.py test app/tests
 
 #### Deployment section ####
 build: build-dir
