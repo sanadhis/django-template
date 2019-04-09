@@ -10,6 +10,7 @@ User=ubuntu
 Group=www-data
 WorkingDirectory=<project_dir>
 ExecStart=<gunicorn_path> \
+          --bind <hostname>:<port> \
           --access-logfile - \
           --workers 3 \
           config.wsgi:application

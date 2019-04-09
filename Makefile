@@ -1,6 +1,7 @@
 conda?=miniconda
 gunicorn?=$(shell which gunicorn)
 port?=8000
+hostname?=0.0.0.0
 
 projectDir=$(PWD)
 user=$(shell id -u)
@@ -22,9 +23,11 @@ start:
 build: build-dir
 	sed -e 's#<gunicorn_path>#$(gunicorn)#' \
 		-e 's#<project_dir>#$(projectDir)/app#' \
+		-e 's#<hostname>#$(hostname)#' \
+		-e 's#<port>#$(port)#' \
 		deploy/app.service > build/app.service
 
-install:
+deploy:
 ifeq ($(user),0)
 	sudo cp build/app.service /etc/systemd/system/app.service
 	sudo systemctl enable app.service

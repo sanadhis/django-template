@@ -10,7 +10,7 @@ or
 make init conda=anaconda
 
 then
-export PATH=$PATH:$HOME/miniconda/bin
+export PATH=$PATH:$HOME/miniconda3/bin
 or
 export PATH=$PATH:$HOME/anaconda/bin
 ```
@@ -32,9 +32,9 @@ make start
 make build
 ```
 
-## 2. Deploy and install into systemd
+## 2. Install and deploy into systemd
 ```bash
-sudo make install
+sudo make deploy
 ```
 
 ### Notes:
