@@ -13,4 +13,5 @@ ExecStart=<gunicorn_path> \
           --bind <hostname>:<port> \
           --access-logfile - \
           --workers 3 \
+          --reload \
           config.wsgi:application
